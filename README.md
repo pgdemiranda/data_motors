@@ -13,7 +13,9 @@ Data Motors is a motorcycle resale company. Its business model is to resell used
 
 ##### ps2.: The data, as well as their description, was taken from the **Kaggle** database [Motorcycle Dataset](https://www.kaggle.com/datasets/nehalbirla/motorcycle-dataset).
 ## Final Product:
-We will answer the CEO's rounds of questions via email, sending a file in .xlsx format at the end with suggestions on which motorcycles to buy. We will also make the information available through API, including graphs and a download button for the same .xlsx file.
+We will answer the CEO's rounds of questions via email, sending a file in .xlsx format at the end with suggestions on which motorcycles to buy. We will also make the information available through a Dashboard, accesible via API, including graphs and a download button for the same .xlsx file. please, feel free to follow the link below and have access to our dashboard:
+
+[Data Motors Dashboard](https://pgdemiranda-data-motors-app-0k16ao.streamlit.app/)
 
 ## Tools Used:
 - Python 3.10.8;
@@ -26,9 +28,9 @@ We will answer the CEO's rounds of questions via email, sending a file in .xlsx 
 The CEO of Data Motors company hired us as a data scientist because it wants to increase its profit by buying and reselling the best motorcycles available within the database that the company acquired through a market study.
 
 ## Objectives:
-1. Answer all the questions made by Data Motors' CEO.
-2. Suggest the purchase of motorcycles that meet all the company's standards (question 7, third round)
-3. Provide all information through API
+1. Answer all the questions made by Data Motors' CEO. The answers can be found on this [project notebook](./notebooks/projeto.ipynb).
+2. Suggest the purchase of motorcycles that meet all the company's standards (question 7, third round), [this is the file with the answers](./data/exported/bikes_selected.xlsx).
+3. Provide all information through API, again, here is the link to the [Dashboard](https://pgdemiranda-data-motors-app-0k16ao.streamlit.app/)
 
 # 2. Business Assumptions
 The database is based on an Indian new and used motorcycle resale website, with values negotiated in Indian Rupees. However, we have noted the values in US dollars.
