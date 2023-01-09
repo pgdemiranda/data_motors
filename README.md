@@ -39,7 +39,7 @@ The database is based on an Indian new and used motorcycle resale website, with 
 | selling_price | Selling price |
 | year | Motorcycle year of manufacture |
 | seller_type | Individual, personal, seller or reseller |
-| owner | If the motorcyle had one, two, three of four owners |
+| owner | If the motorcycle had one, two, three of four owners |
 | km_driven | Number of kilometers driven on the motorcycle |
 | ex_showroom_price | Motorcycle price without insurance and registration fees |
 
@@ -66,7 +66,7 @@ First Round of Questions:
 11. What is the average year of the motorcycles in the database?
 12. What is the average mileage of the motorcycles in the database?
 13. How many motorcycles in the database had only one owner?
-14. Are the motorcycles with the highest mileage the cheapest motorcycles in the Dataset?
+14. Are the motorcycles with the highest mileage the cheapest motorcycles in the database?
 
 Second Round of Questions:
 

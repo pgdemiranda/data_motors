@@ -3,22 +3,17 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-
 def rd1_question_9(df):
     df_grouped = df[["id", "seller_type"]].groupby("seller_type")
-
     df_grouped = df_grouped.count().reset_index()
-
     df_grouped = df_grouped.rename(columns={"id": "count"})
 
-    fig = px.bar(
-        df_grouped,
-        x="seller_type",
-        y="count",
-        labels={"seller_type": "Seller Type", "count": "Quantity"},
-        color="seller_type",
-        text="count",
-    )
+    fig = px.bar(df_grouped,
+                x="seller_type",
+                y="count",
+                labels={"seller_type": "Seller Type", "count": "Quantity"},
+                color="seller_type",
+                text="count")
 
     fig.update_traces(textposition="outside")
 
@@ -28,21 +23,17 @@ def rd1_question_9(df):
 
 
 def rd1_question_13(df):
-    df_grouped = (
-        df.groupby("owner")
-        .agg(qty=pd.NamedAgg("id", "count"))
-        .sort_values("qty")
-        .reset_index()
-    )
+    df_grouped = (df.groupby("owner")
+                .agg(qty=pd.NamedAgg("id", "count"))
+                .sort_values("qty")
+                .reset_index())
 
-    fig = px.bar(
-        df_grouped,
-        x="owner",
-        y="qty",
-        labels={"owner": "Owner Types", "qty": "Quantity"},
-        color="owner",
-        text="qty",
-    )
+    fig = px.bar(df_grouped,
+                x="owner",
+                y="qty",
+                labels={"owner": "Owner Types", "qty": "Quantity"},
+                color="owner",
+                text="qty")
 
     fig.update_traces(textposition="outside")
 
@@ -52,15 +43,13 @@ def rd1_question_13(df):
 
 
 def rd1_question_14(df):
-    st.text("As we can see, bikes with high kilometer have cheapier prices")
+    st.text("As we can see, bikes with high mileage have lower prices")
 
-    fig = px.scatter(
-        df,
-        x="km_driven",
-        y="selling_price",
-        labels={"km_driven": "Kilometers", "selling_price": "Selling Price"},
-    )
-
+    fig = px.scatter(df,
+                    x="km_driven",
+                    y="selling_price",
+                    labels={"km_driven": "Kilometers", "selling_price": "Selling Price"})
+    
     st.plotly_chart(fig, use_container_width=True)
 
     return None
@@ -69,25 +58,19 @@ def rd1_question_14(df):
 def rd2_question_1(df):
     df_grouped = df.groupby("owner")
 
-    df_grouped = (
-        df_grouped.agg(
-            avg_price=pd.NamedAgg("selling_price", "mean"),
-            qty=pd.NamedAgg("owner", "count"),
-        )
-        .sort_values("avg_price", ascending=False)
-        .reset_index()
-    )
+    df_grouped = (df_grouped.agg(avg_price=pd.NamedAgg("selling_price", "mean"),
+                                qty=pd.NamedAgg("owner", "count"))
+                .sort_values("avg_price", ascending=False)
+                .reset_index())
 
     df_grouped["avg_price"] = df_grouped["avg_price"].round(2)
 
-    fig = px.bar(
-        df_grouped,
-        x="owner",
-        y="avg_price",
-        labels={"owner": "Owner Types", "avg_price": "Avarage Price"},
-        text="avg_price",
-        color="owner",
-    )
+    fig = px.bar(df_grouped,
+                x="owner",
+                y="avg_price",
+                labels={"owner": "Owner Types", "avg_price": "Avarage Price"},
+                text="avg_price",
+                color="owner")
 
     fig.update_traces(texttemplate="$ %{text:.2f}", textposition="inside")
 
@@ -142,7 +125,7 @@ def rd2_question_3(df):
     return None
 
 
-def rd2_question_7(df):
+def rd2_question_5(df):
     df_grouped = df.loc[:, ["company", "id"]].groupby("company")
 
     df_grouped = df_grouped.count().sort_values("id", ascending=False).reset_index()
@@ -186,7 +169,7 @@ def rd3_question_2(df):
         labels={"company": "Companies", "avg_price": "Avarege Price"},
         text="avg_price",
         color="company",
-        title="Company Avarege Price",
+        title="Company Average Price",
     )
 
     fig.update_traces(texttemplate="$ %{text:.2f}", textposition="outside")
@@ -231,17 +214,17 @@ def rd3_question_5(df):
 def rd3_question_7(df):
     # Filters
     year = df["year"] >= 2018
-    venda = df["selling_price"] < df["ex_showroom_price"]
-    donos = df["owner"] == "1st owner"
-    vendedor = df["seller_type"] == "Individual"
-    km_rodado = df["km_driven"] <= 40000
+    selling_p = df["selling_price"] < df["ex_showroom_price"]
+    owners = df["owner"] == "1st owner"
+    seller = df["seller_type"] == "Individual"
+    km_driven = df["km_driven"] <= 40000
 
     # Columns
     columns = ["id", "name", "selling_price", "km_driven", "year"]
 
     # Data Selection
     df_selected = df.loc[
-        year & km_rodado & donos & vendedor & venda, columns
+        year & km_driven & owners & seller & selling_p, columns
     ].sort_values("selling_price", ascending=False)
 
     st.dataframe(df_selected)
@@ -249,7 +232,7 @@ def rd3_question_7(df):
     df_xlsx = to_excel(df_selected)
 
     st.download_button(
-        label="📥 Download Buyinbg Suggestions",
+        label="📥 Download Buying Suggestions",
         data=df_xlsx,
         file_name="buing_suggestions.xlsx",
     )
